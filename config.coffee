@@ -42,6 +42,9 @@ module.exports =
   # Enable custom protocol receiver
   enableCustomReceiver: true
 
+  # Run this script everytime a new stream is being published
+  publishStreamTriggerScript: './on-new-stream.sh'
+
   ### Custom protocol receiver configurations ###
 
   # Transport for custom protocol receiver

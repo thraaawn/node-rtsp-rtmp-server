@@ -1469,6 +1469,16 @@ class RTMPSession
     else
       streamName = publishingName
 
+    { exists } = require 'fs'
+
+    exists config.publishStreamTriggerScript, (fileExists) ->
+      if fileExists
+        { spawn } = require 'child_process'
+        s = spawn 'bash', [config.publishStreamTriggerScript, publishingName]
+        logger.info "[rtmp] new stream trigger: executed script=#{config.publishStreamTriggerScript}"
+      else
+        logger.info "[rtmp] new stream trigger: no script=#{config.publishStreamTriggerScript} found"
+
     @isFirstVideoReceived = false
     @isFirstAudioReceived = false
 
